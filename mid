@@ -1,0 +1,29 @@
+getwd()
+setwd("D:/DATA_Science/mid")
+#library(tidyverse)
+#library(magick)
+library(tesseract)
+library(magrittr)
+library(magick)
+#library(tesseract)
+library(data.table)
+library(dplyr)
+eng <- tesseract("eng")
+text <- tesseract::ocr("image2_1.jpeg", engine = eng)
+DF <- as.data.frame(text)
+# convert to black and white
+#convert_bw <- 'convert image2_1.jpeg -fill white -fuzz 25% +opaque "#000000" table_bw.jpeg'
+#system(convert_bw,intern = FALSE)
+
+# remove grid
+#remove_grid <- "convert table_bw.jpg -negate -define morphology:compose=darken -morphology Thinning 'Rectangle:1x80+0+0<' -negate table_wo_grid.jpeg"
+#system(remove_grid)
+#data <- image_read("table_wo_grid.jpeg") %>%
+ # image_crop(geometry_area(0, 0, 80, 25)) %>%
+#  image_ocr() %>%
+ # stringi::stri_split(fixed = "\n")
+
+
+#fwrite
+write.table(DF, file = 'data4.csv',sep = "|")
+
